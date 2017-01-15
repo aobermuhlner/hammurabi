@@ -14,6 +14,8 @@ public class Hammurabi {
 	double harvest = 0;
 	double populationDeath = 0;
 	double populationBirth = 0;
+	double plagueDeath = 0;
+	double ratStorageEaten = 0;
 	Scanner sc = new Scanner(System.in);
 	private void runGame() {
 
@@ -23,6 +25,7 @@ public class Hammurabi {
 			printStatus();
 			getOrders();
 			calculateEffects();
+			calculateCatastroph();
 			printEffects();
 		}
 
@@ -78,10 +81,26 @@ public class Hammurabi {
 		population += populationBirth;
 	}
 	
+	private void calculateCatastroph() {
+		if(Math.random() < 0.2){
+			plagueDeath = population * (Math.random() * 0.1 + 0.4);
+			population -= plagueDeath;
+		} else {
+			plagueDeath = 0;
+		}
+		if(Math.random() < 0.2){
+			ratStorageEaten = storage * (Math.random() * 0.05 + 0.15);
+			storage -= ratStorageEaten;
+		}
+	}
+	
 	private void printEffects() {
 		System.out.println("This year your harvest was " + harvest + " bushels" );
 		System.out.println(populationDeath + " people starved to death");
 		System.out.println(populationBirth + " people were born");
+		if(plagueDeath > 0){
+			System.out.println("The plague killed " + plagueDeath + " people");			
+		}
 	}
 
 
