@@ -51,7 +51,7 @@ public class Hammurabi {
 			seed = sc.nextInt();
 
 			valid = true;
-			if(acresChange > acres){
+			if(acres + acresChange < 0){
 				System.out.println("You only have " + acres + " acres");
 				valid = false;
 			}
@@ -91,6 +91,7 @@ public class Hammurabi {
 			population += populationBirth;
 		acresPrice = 100 * (Math.random() * 0.1 + 0.15);
 		acresPrice = Math.round(acresPrice*100)/100.0; 
+		populationBirth = Math.round(populationBirth*100)/100.0; 
 	}
 	private void calculateCatastroph() {
 		if(Math.random() < 0.1){
